@@ -5,6 +5,7 @@
 // ============================================
 
 import { courses } from "./data.js";
+import { fetchUser, fetchUserAsync } from "./api.js";
 
 // ------------------------------
 // ES6 Practice
@@ -158,3 +159,15 @@ courseGrid.addEventListener("click",(event)=>{
     `;
 
 });
+// =====================================
+// Hands-On 4
+// Promise
+// =====================================
+
+fetchUser(1);
+
+// =====================================
+// Async Await
+// =====================================
+
+fetchUserAsync(2);
