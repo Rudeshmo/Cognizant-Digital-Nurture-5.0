@@ -4,14 +4,14 @@
 // app.js
 // ============================================
 
-import { courses } from "./data.js";
+import { courses } from "./data.js"
 import {
     fetchUser,
     fetchUserAsync,
     fetchAllCourses,
-    apiFetch
+    apiFetch,
+    axiosFetch
 } from "./api.js";
-
 // ------------------------------
 // ES6 Practice
 // ------------------------------
@@ -214,12 +214,29 @@ Promise.all([
 const notificationList =
 document.querySelector("#notification-list");
 
+
+
+// =====================================
+// Load Notifications using Axios
+// =====================================
+
 async function loadNotifications() {
+
+    const loading = document.querySelector("#loading");
+    const error = document.querySelector("#error-message");
+    const retry = document.querySelector("#retry-btn");
+
+    loading.classList.add("show");
+    error.textContent = "";
+    retry.style.display = "none";
 
     try {
 
-        const posts = await apiFetch(
-            "https://jsonplaceholder.typicode.com/posts?_limit=5"
+        const posts = await axiosFetch(
+            "https://jsonplaceholder.typicode.com/posts",
+            {
+                userId: 1
+            }
         );
 
         notificationList.innerHTML = "";
@@ -240,13 +257,53 @@ async function loadNotifications() {
         });
 
     }
+    catch (err) {
 
-    catch(error){
+        notificationList.innerHTML = "";
 
-        console.log(error);
+        error.textContent = "Unable to load notifications.";
+
+        retry.style.display = "inline-block";
+
+    }
+    finally {
+
+        loading.classList.remove("show");
 
     }
 
 }
+// =====================================
+// Axios Example
+// =====================================
 
+axiosFetch(
+    "https://jsonplaceholder.typicode.com/posts",
+    {
+        userId: 1
+    }
+)
+.then(posts => {
+
+    console.log("Axios Posts");
+
+    console.log(posts);
+
+});
 loadNotifications();
+/*
+========================================
+
+Fetch vs Axios
+
+1. Fetch requires response.json()
+   Axios automatically parses JSON.
+
+2. Fetch requires checking response.ok.
+   Axios throws an error automatically for HTTP errors.
+
+3. Axios supports interceptors.
+   Fetch does not support interceptors directly.
+
+========================================
+*/

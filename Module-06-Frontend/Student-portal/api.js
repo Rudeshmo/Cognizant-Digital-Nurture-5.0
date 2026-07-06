@@ -90,3 +90,27 @@ export async function apiFetch(url) {
     return await response.json();
 
 }
+// =====================================
+// Axios Request Interceptor
+// =====================================
+
+axios.interceptors.request.use((config) => {
+
+    console.log(`API call started: ${config.url}`);
+
+    return config;
+
+});
+// =====================================
+// Axios Fetch Function
+// =====================================
+
+export async function axiosFetch(url, params = {}) {
+
+    const response = await axios.get(url, {
+        params: params
+    });
+
+    return response.data;
+
+}

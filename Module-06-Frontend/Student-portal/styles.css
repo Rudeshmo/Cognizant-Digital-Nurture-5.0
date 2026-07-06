@@ -349,3 +349,19 @@ footer{
     display:none;
 
 }
+/* ==========================================
+   Loading Spinner
+========================================== */
+
+.spinner{
+    display:none;
+    text-align:center;
+    padding:20px;
+    font-size:20px;
+    color:#1e3a8a;
+    font-weight:bold;
+}
+
+.spinner.show{
+    display:block;
+}
