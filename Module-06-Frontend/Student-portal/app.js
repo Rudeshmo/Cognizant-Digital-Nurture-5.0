@@ -5,7 +5,12 @@
 // ============================================
 
 import { courses } from "./data.js";
-import { fetchUser, fetchUserAsync } from "./api.js";
+import {
+    fetchUser,
+    fetchUserAsync,
+    fetchAllCourses,
+    apiFetch
+} from "./api.js";
 
 // ------------------------------
 // ES6 Practice
@@ -171,3 +176,77 @@ fetchUser(1);
 // =====================================
 
 fetchUserAsync(2);
+// =====================================
+// Loading Courses
+// =====================================
+
+const loading = document.querySelector("#loading");
+
+loading.textContent = "Loading courses...";
+
+fetchAllCourses().then((data) => {
+
+    renderCourses(data);
+
+    loading.style.display = "none";
+
+});
+// =====================================
+// Promise.all()
+// =====================================
+
+Promise.all([
+    fetchUserAsync(1),
+    fetchUserAsync(2)
+]).then((users) => {
+
+    console.log("Both Users Loaded");
+
+    console.log(users[0].name);
+
+    console.log(users[1].name);
+
+});
+// =====================================
+// Notifications
+// =====================================
+
+const notificationList =
+document.querySelector("#notification-list");
+
+async function loadNotifications() {
+
+    try {
+
+        const posts = await apiFetch(
+            "https://jsonplaceholder.typicode.com/posts?_limit=5"
+        );
+
+        notificationList.innerHTML = "";
+
+        posts.forEach(post => {
+
+            const card = document.createElement("article");
+
+            card.className = "course-card";
+
+            card.innerHTML = `
+                <h3>${post.title}</h3>
+                <p>${post.body}</p>
+            `;
+
+            notificationList.appendChild(card);
+
+        });
+
+    }
+
+    catch(error){
+
+        console.log(error);
+
+    }
+
+}
+
+loadNotifications();

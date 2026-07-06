@@ -53,3 +53,40 @@ export async function fetchUserAsync(id){
     }
 
 }
+// =====================================
+// Local Course Data
+// =====================================
+
+import { courses } from "./data.js";
+
+export function fetchAllCourses() {
+
+    return new Promise((resolve) => {
+
+        setTimeout(() => {
+
+            resolve(courses);
+
+        }, 1000);
+
+    });
+
+}
+
+// =====================================
+// Reusable Fetch Function
+// =====================================
+
+export async function apiFetch(url) {
+
+    const response = await fetch(url);
+
+    if (!response.ok) {
+
+        throw new Error("Unable to fetch data.");
+
+    }
+
+    return await response.json();
+
+}

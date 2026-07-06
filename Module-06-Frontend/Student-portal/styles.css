@@ -304,3 +304,48 @@ footer{
     transform:translateY(-6px);
 
 }
+/* Notifications */
+
+#notifications{
+
+    width:90%;
+
+    margin:50px auto;
+
+}
+
+#notification-list{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+
+    gap:20px;
+
+}
+
+#loading{
+
+    font-size:20px;
+
+    color:#1e3a8a;
+
+    margin-bottom:20px;
+
+}
+
+#error-message{
+
+    color:red;
+
+    font-weight:bold;
+
+    margin:20px 0;
+
+}
+
+#retry-btn{
+
+    display:none;
+
+}
