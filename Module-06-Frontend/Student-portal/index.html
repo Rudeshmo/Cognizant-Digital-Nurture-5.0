@@ -33,122 +33,77 @@
     <main>
 
         <!-- Hero Section -->
-        <!-- Hero Section -->
+        <section id="hero">
 
-<section id="hero">
+            <h1>Welcome to the Student Portal</h1>
 
-    <h1>Welcome to the Student Portal</h1>
+            <p>
+                Access your courses, monitor academic progress,
+                and stay connected with your learning journey.
+            </p>
 
-    <p>
-        Access your courses, monitor academic progress,
-        and stay connected with your learning journey.
-    </p>
+            <button>Explore Courses</button>
 
-    <button>Explore Courses</button>
+        </section>
 
-</section>
+        <!-- Student Stats -->
+        <section id="stats">
 
-<!-- Student Stats -->
+            <div class="stat-item">
+                <h3>3</h3>
+                <p>Courses Enrolled</p>
+            </div>
 
-<section id="stats">
+            <div class="stat-item">
+                <h3>7.71</h3>
+                <p>Current GPA</p>
+            </div>
 
-    <div class="stat-item">
+            <div class="stat-item">
+                <h3>6</h3>
+                <p>Semester</p>
+            </div>
 
-        <h3>3</h3>
-        <p>Courses Enrolled</p>
+        </section>
 
-    </div>
+        <!-- Controls -->
+        <section id="controls">
 
-    <div class="stat-item">
+            <input
+                type="text"
+                id="search-courses"
+                placeholder="Search courses..."
+            >
 
-        <h3>3.8</h3>
-        <p>Current GPA</p>
+            <button id="sort-btn">
+                Sort by Credits
+            </button>
 
-    </div>
+        </section>
 
-    <div class="stat-item">
-
-        <h3>6</h3>
-        <p>Semester</p>
-
-    </div>
-
-</section>
-
-        <!-- Courses Section -->
+        <!-- Courses -->
         <section id="courses">
 
-    <h2>Available Courses</h2>
+            <h2>Available Courses</h2>
 
-    <div class="course-grid">
+            <div class="course-grid">
+                <!-- JavaScript will render course cards here -->
+            </div>
 
-        <article class="course-card">
+            <p id="total-credits"></p>
 
-            <h3>Python Programming</h3>
+        </section>
 
-            <p>
-                Learn Python programming from basics to
-                advanced concepts.
-            </p>
+        <!-- Selected Course -->
+        <section id="selected-course">
 
-            <span>Credits : 4</span>
+            <h2>Selected Course</h2>
 
-        </article>
+            <div id="course-info">
+                Click a course card to view details.
+            </div>
 
-        <article class="course-card">
-
-            <h3>Database Management</h3>
-
-            <p>
-                Learn SQL, MySQL, Transactions,
-                Normalization and Joins.
-            </p>
-
-            <span>Credits : 3</span>
-
-        </article>
-
-        <article class="course-card">
-
-            <h3>Frontend Development</h3>
-
-            <p>
-                HTML5, CSS3 and Responsive Web Design.
-            </p>
-
-            <span>Credits : 3</span>
-
-        </article>
-
-        <article class="course-card">
-
-            <h3>Cloud Computing</h3>
-
-            <p>
-                Learn cloud concepts,
-                deployment and services.
-            </p>
-
-            <span>Credits : 4</span>
-
-        </article>
-
-        <article class="course-card">
-
-            <h3>Software Testing</h3>
-
-            <p>
-                Manual Testing,
-                Selenium and Automation.
-            </p>
-
-            <span>Credits : 2</span>
-
-        </article>
-
-    </div>
-
-</section>
+        </section>
 
     </main>
 
@@ -160,6 +115,8 @@
         </p>
 
     </footer>
+
+    <script type="module" src="app.js"></script>
 
 </body>
 

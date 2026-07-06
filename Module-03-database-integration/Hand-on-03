@@ -186,7 +186,7 @@ WITH CHECK OPTION;
 
 
 -- ==========================================================
--- Task 3 : Stored Procedures
+-- Task 3 : Stored Proceduresgit
 -- ==========================================================
 
 DELIMITER $$
