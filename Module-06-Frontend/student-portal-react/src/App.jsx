@@ -1,86 +1,46 @@
 import "./App.css";
 
-import { useState } from "react";
-
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import CourseCard from "./components/CourseCard";
 
-import coursesData from "./data/courses";
+import HomePage from "./pages/HomePage";
+import CoursesPage from "./pages/CoursesPage";
+import ProfilePage from "./pages/ProfilePage";
+import CourseDetailPage from "./pages/CourseDetailPage";
+
+import { Routes, Route } from "react-router-dom";
 
 function App() {
-
-    const [courses] = useState(coursesData);
-
-    const [searchTerm, setSearchTerm] = useState("");
-
-    const [enrolledCourses, setEnrolledCourses] = useState([]);
-
-    function handleEnroll(id) {
-
-        if (!enrolledCourses.includes(id)) {
-
-            setEnrolledCourses([
-                ...enrolledCourses,
-                id
-            ]);
-
-        }
-
-    }
-
-    const filteredCourses = courses.filter(course =>
-
-        course.name
-            .toLowerCase()
-            .includes(searchTerm.toLowerCase())
-
-    );
 
     return (
 
         <>
 
-            <Header
-                siteName="Student Portal"
-                enrolledCount={enrolledCourses.length}
-            />
+            <Header siteName="Student Portal" />
 
-            <main>
+            <Routes>
 
-                <input
-
-                    type="text"
-
-                    placeholder="Search Courses..."
-
-                    value={searchTerm}
-
-                    onChange={(e) =>
-
-                        setSearchTerm(e.target.value)
-
-                    }
-
+                <Route
+                    path="/"
+                    element={<HomePage />}
                 />
 
-                <br /><br />
+                <Route
+                    path="/courses"
+                    element={<CoursesPage />}
+                />
 
-                {filteredCourses.map(course => (
+                <Route
+                    path="/profile"
+                    element={<ProfilePage />}
+                />
 
-                    <CourseCard
+                <Route
+                    path="/courses/:courseId"
+                    element={<CourseDetailPage />}
+                />
 
-                        key={course.id}
-
-                        {...course}
-
-                        onEnroll={handleEnroll}
-
-                    />
-
-                ))}
-
-            </main>
+            </Routes>
 
             <Footer />
 

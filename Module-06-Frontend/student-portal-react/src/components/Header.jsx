@@ -1,30 +1,43 @@
 import PropTypes from "prop-types";
 
-function Header({ siteName, enrolledCount }) {
+import { Link } from "react-router-dom";
+
+function Header({ siteName }) {
+
     return (
+
         <header className="header">
 
             <h1>{siteName}</h1>
 
             <nav>
+
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Courses</a></li>
-                    <li><a href="#">Profile</a></li>
+
+                    <li>
+                        <Link to="/">Home</Link>
+                    </li>
+
+                    <li>
+                        <Link to="/courses">Courses</Link>
+                    </li>
+
+                    <li>
+                        <Link to="/profile">Profile</Link>
+                    </li>
+
                 </ul>
+
             </nav>
 
-            <div>
-                <strong>Enrolled: {enrolledCount}</strong>
-            </div>
-
         </header>
+
     );
+
 }
 
 Header.propTypes = {
     siteName: PropTypes.string.isRequired,
-    enrolledCount: PropTypes.number.isRequired,
 };
 
 export default Header;

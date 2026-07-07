@@ -1,13 +1,24 @@
 import PropTypes from "prop-types";
 
+import { Link, useNavigate } from "react-router-dom";
+
 function CourseCard({
     id,
     name,
     code,
     credits,
-    grade,
-    onEnroll
+    grade
 }) {
+
+    const navigate = useNavigate();
+
+    function handleEnroll() {
+
+        alert(`${name} Enrolled Successfully`);
+
+        navigate("/profile");
+
+    }
 
     return (
 
@@ -27,10 +38,18 @@ function CourseCard({
                 <strong>Grade:</strong> {grade}
             </p>
 
-            <button
-                onClick={() => onEnroll(id)}
-            >
+            <Link to={`/courses/${id}`}>
+
+                View Details
+
+            </Link>
+
+            <br /><br />
+
+            <button onClick={handleEnroll}>
+
                 Enroll
+
             </button>
 
         </article>
@@ -45,7 +64,6 @@ CourseCard.propTypes = {
     code: PropTypes.string.isRequired,
     credits: PropTypes.number.isRequired,
     grade: PropTypes.string.isRequired,
-    onEnroll: PropTypes.func.isRequired,
 };
 
 export default CourseCard;
