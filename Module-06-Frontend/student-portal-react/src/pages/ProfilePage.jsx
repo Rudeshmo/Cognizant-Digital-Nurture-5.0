@@ -1,16 +1,49 @@
+import { useSelector, useDispatch } from "react-redux";
+import { unenroll } from "../redux/enrollmentSlice";
+
 function ProfilePage() {
+
+    const dispatch = useDispatch();
+
+    const enrolledCourses = useSelector(
+        (state) => state.enrollment.enrolledCourses
+    );
 
     return (
 
         <main>
 
-            <h2>Student Profile</h2>
+            <h2>My Enrolled Courses</h2>
 
-            <p>Name : Rudesh</p>
+            {
+                enrolledCourses.length === 0 ? (
 
-            <p>Email : rudesh@example.com</p>
+                    <p>No enrolled courses.</p>
 
-            <p>Semester : 6</p>
+                ) : (
+
+                    enrolledCourses.map((course) => (
+
+                        <div key={course.id}>
+
+                            <h3>{course.name}</h3>
+
+                            <button
+                                onClick={() =>
+                                    dispatch(unenroll(course.id))
+                                }
+                            >
+                                Remove
+                            </button>
+
+                            <hr />
+
+                        </div>
+
+                    ))
+
+                )
+            }
 
         </main>
 

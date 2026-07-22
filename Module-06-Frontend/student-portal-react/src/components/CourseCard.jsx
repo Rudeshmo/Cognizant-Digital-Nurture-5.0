@@ -1,6 +1,6 @@
-import PropTypes from "prop-types";
-
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { enroll } from "../redux/enrollmentSlice";
 
 function CourseCard({
     id,
@@ -11,13 +11,21 @@ function CourseCard({
 }) {
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     function handleEnroll() {
 
-        alert(`${name} Enrolled Successfully`);
+        dispatch(
+            enroll({
+                id,
+                name,
+                code,
+                credits,
+                grade
+            })
+        );
 
         navigate("/profile");
-
     }
 
     return (
@@ -26,30 +34,20 @@ function CourseCard({
 
             <h3>{name}</h3>
 
-            <p>
-                <strong>Code:</strong> {code}
-            </p>
+            <p><strong>Code:</strong> {code}</p>
 
-            <p>
-                <strong>Credits:</strong> {credits}
-            </p>
+            <p><strong>Credits:</strong> {credits}</p>
 
-            <p>
-                <strong>Grade:</strong> {grade}
-            </p>
+            <p><strong>Grade:</strong> {grade}</p>
 
             <Link to={`/courses/${id}`}>
-
                 View Details
-
             </Link>
 
             <br /><br />
 
             <button onClick={handleEnroll}>
-
                 Enroll
-
             </button>
 
         </article>
@@ -57,13 +55,5 @@ function CourseCard({
     );
 
 }
-
-CourseCard.propTypes = {
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    code: PropTypes.string.isRequired,
-    credits: PropTypes.number.isRequired,
-    grade: PropTypes.string.isRequired,
-};
 
 export default CourseCard;

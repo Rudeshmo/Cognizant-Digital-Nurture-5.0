@@ -1,32 +1,59 @@
-import CourseCard from "../components/CourseCard";
-import courses from "../data/courses";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { enroll } from "../redux/enrollmentSlice";
 
-function CoursesPage() {
+function CourseCard({
+    id,
+    name,
+    code,
+    credits,
+    grade
+}) {
+
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    function handleEnroll() {
+
+        dispatch(
+            enroll({
+                id,
+                name,
+                code,
+                credits,
+                grade
+            })
+        );
+
+        navigate("/profile");
+    }
 
     return (
 
-        <main>
+        <article className="course-card">
 
-            <h2>All Courses</h2>
+            <h3>{name}</h3>
 
-            <div className="course-grid">
+            <p><strong>Code:</strong> {code}</p>
 
-                {courses.map((course) => (
+            <p><strong>Credits:</strong> {credits}</p>
 
-                    <CourseCard
-                        key={course.id}
-                        {...course}
-                        onEnroll={() => {}}
-                    />
+            <p><strong>Grade:</strong> {grade}</p>
 
-                ))}
+            <Link to={`/courses/${id}`}>
+                View Details
+            </Link>
 
-            </div>
+            <br /><br />
 
-        </main>
+            <button onClick={handleEnroll}>
+                Enroll
+            </button>
+
+        </article>
 
     );
 
 }
 
-export default CoursesPage;
+export default CourseCard;

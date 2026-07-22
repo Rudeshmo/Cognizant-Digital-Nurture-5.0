@@ -13,9 +13,7 @@ import { Routes, Route } from "react-router-dom";
 function App() {
 
     return (
-
         <>
-
             <Header siteName="Student Portal" />
 
             <Routes>
@@ -45,7 +43,6 @@ function App() {
             <Footer />
 
         </>
-
     );
 
 }

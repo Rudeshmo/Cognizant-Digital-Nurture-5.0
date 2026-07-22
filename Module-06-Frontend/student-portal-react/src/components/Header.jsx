@@ -1,8 +1,11 @@
-import PropTypes from "prop-types";
-
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Header({ siteName }) {
+
+    const enrolledCourses = useSelector(
+        (state) => state.enrollment.enrolledCourses
+    );
 
     return (
 
@@ -14,30 +17,22 @@ function Header({ siteName }) {
 
                 <ul>
 
-                    <li>
-                        <Link to="/">Home</Link>
-                    </li>
-
-                    <li>
-                        <Link to="/courses">Courses</Link>
-                    </li>
-
-                    <li>
-                        <Link to="/profile">Profile</Link>
-                    </li>
+                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/courses">Courses</Link></li>
+                    <li><Link to="/profile">Profile</Link></li>
 
                 </ul>
 
             </nav>
+
+            <h3>
+                Enrolled: {enrolledCourses.length}
+            </h3>
 
         </header>
 
     );
 
 }
-
-Header.propTypes = {
-    siteName: PropTypes.string.isRequired,
-};
 
 export default Header;
