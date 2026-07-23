@@ -28,7 +28,7 @@ class CourseViewSet(viewsets.ModelViewSet):
        )
 
        return Response(serializer.data) 
-    
+       
 class StudentViewSet(viewsets.ModelViewSet):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
